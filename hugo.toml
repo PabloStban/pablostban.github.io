@@ -1,0 +1,41 @@
+baseURL = '/'
+languageCode = 'en-us'
+title = 'Pablo | Mechatronics & CyberSecurity'
+theme = "mana"
+
+# Importante para que funcione la búsqueda
+[outputs]
+  home = ["HTML", "JSON"]
+
+[params]
+  description = "Ingeniería Mecatrónica y Ciberseguridad Industrial"
+  author = "Pablo"
+  heroTitleLine1 = "PABLO"
+  heroTitleLine2 = "Mecatrónica & OT Security"
+  
+  # Estilo de las alertas (tipo Obsidian)
+  [params.admonitions]
+    alertStyle = "favicon"
+
+[params.social]
+  github = "https://github.com/tu-usuario"
+  # Agrega los que quieras según la doc que pasaste
+
+[[menus.main]]
+  name = 'Inicio'
+  pageRef = '/'
+  weight = 10
+
+[[menus.main]]
+  name = 'Posts'
+  pageRef = '/posts'
+  weight = 20
+
+[[menus.main]]
+  name = 'Sobre mí'
+  url = '/about/'
+  weight = 30
+
+[markup.goldmark.parser.attribute]
+  block = true
+  title = true
