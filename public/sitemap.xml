@@ -122,26 +122,6 @@
                href="http://localhost:1313/hardware/"/>
   </url>
   <url>
-    <loc>http://localhost:1313/hardware/wifi/</loc>
-    
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-    <xhtml:link
-               rel="alternate"
-               hreflang="en"
-               href="http://localhost:1313/hardware/wifi/"/>
-  </url>
-  <url>
-    <loc>http://localhost:1313/it-ot/it-content/</loc>
-    
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-    <xhtml:link
-               rel="alternate"
-               hreflang="en"
-               href="http://localhost:1313/it-ot/it-content/"/>
-  </url>
-  <url>
     <loc>http://localhost:1313/it-ot/</loc>
     
     <changefreq>monthly</changefreq>
@@ -150,16 +130,6 @@
                rel="alternate"
                hreflang="en"
                href="http://localhost:1313/it-ot/"/>
-  </url>
-  <url>
-    <loc>http://localhost:1313/mechatronics/mechatronics-content/</loc>
-    
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-    <xhtml:link
-               rel="alternate"
-               hreflang="en"
-               href="http://localhost:1313/mechatronics/mechatronics-content/"/>
   </url>
   <url>
     <loc>http://localhost:1313/mechatronics/</loc>

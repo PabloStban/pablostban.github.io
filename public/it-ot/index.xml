@@ -7,12 +7,5 @@
     <generator>Hugo</generator>
     <language>en-US</language>
     <atom:link href="http://localhost:1313/it-ot/index.xml" rel="self" type="application/rss+xml" />
-    <item>
-      <title>it</title>
-      <link>http://localhost:1313/it-ot/it-content/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/it-ot/it-content/</guid>
-      <description></description>
-    </item>
   </channel>
 </rss>
