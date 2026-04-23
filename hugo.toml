@@ -1,41 +1,267 @@
-baseURL = 'https://pablostban.github.io/'
-languageCode = 'en-us'
-title = 'Pablo | Mechatronics & CyberSecurity'
-theme = "mana"
+# =============================================================================
+# Full example: Multi-folder, multi-language (translation by directory)
+# Content: content/en/posts/post.md + content/he/posts/post.md
+# See example-single-folder-*.toml and example-multi-folder-*.toml for other setups.
+# =============================================================================
 
-# Importante para que funcione la búsqueda
+baseURL = 'https://example.com/'
+theme = "mana"
+defaultContentLanguage = "en"
+
+# Pagination Configuration
+# Configure how many posts to show per page
+# Default is 10 if not specified
+[pagination]
+  pageSize = 10
+
+# Table of Contents (recommended)
+[markup]
+  [markup.tableOfContents]
+    startLevel = 1
+    endLevel = 6
+    ordered = false
+  # Allow raw HTML within Markdown (for KaTeX, etc.)
+  [markup.goldmark]
+    [markup.goldmark.renderer]
+      unsafe = true
+    [markup.goldmark.parser]
+      # Enable block-level attributes for blockquotes and other block elements
+      # Required for blockquote render hooks (alerts/admonitions)
+      [markup.goldmark.parser.attribute]
+        block = true
+        title = true
+  # Syntax highlighting configuration for code blocks
+  [markup.highlight]
+    codeFences = true
+    guessSyntax = true
+    noClasses = false
+    style = "catppuccin-macchiato"
+
+# Output formats for search index
 [outputs]
   home = ["HTML", "JSON"]
 
+# Sitemap configuration for SEO
+[sitemap]
+  changefreq = "weekly"
+  priority = 0.5
+  filename = "sitemap.xml"
+
+# =============================================================================
+# Shared params (same for all languages)
+# Root params act as fallback: if a language does not define a key in
+# [languages.X.params], the value from root [params] is used.
+# Language separation exists only for custom personalized text:
+# hero titles, description, 404 message, footer, menus
+# =============================================================================
 [params]
-  description = "Ingeniería Mecatrónica y Ciberseguridad Industrial"
-  author = "Pablo"
-  heroTitleLine1 = "PABLO"
-  heroTitleLine2 = "Mecatrónica & OT Security"
-  
-  # Estilo de las alertas (tipo Obsidian)
+  enableIntegrity = false
+  relatedPostsCount = 3
+
+  # Default values - languages can override these in [languages.X.params]
+    description = "A technical blog documenting my journey in Mechatronics and Cybersecurity. Focused on Hardware Hacking, Industrial Protocols (OT), and IT security research."
+    author = "Pablo Paucar"
+    heroTitleLine1 = "MECHATRONICS"
+    heroTitleLine2 = "CYBERSECURITY"
+    custom404Message = "Sorry, the page you are looking for could not be found."
+    # Footer text (optional)
+    footerText = "Built with Hugo and Mana theme"
+
+  # Social media links
+  [params.social]
+    github = "https://github.com/PabloStban"
+    #gitlab = "https://gitlab.com/yourusername"
+    #linkedin = "https://www.linkedin.com/in/yourprofile"
+    twitter = "pablostban"
+    email = "pabloclb027@gmail.com"
+
+  # Avatar (general fallback; override per page with [params.avatar.home] or [params.avatar.about])
+  [params.avatar]
+    #url = "https://example.com/avatar.jpg"
+    assetPath = "images/avatar.png"  # Relative to assets folder; used if url not set
+    # enableResize = true  # Set false to preserve original size
+
+    [params.avatar.home]
+      # url = "https://example.com/home-avatar.jpg"
+      assetPath = "images/avatar.png"
+
+    [params.avatar.about]
+      # url = "https://example.com/about-avatar.jpg"
+      # assetPath = "images/about-avatar.png"
+
+  # Buy Me a Coffee Widget
+  # Set enabled = true and provide your widget ID to use the floating widget
+  # Leave enabled = false or unset to use a simple link instead
+  [params.buyMeACoffee]
+    enabled = true
+    id = "yourwidgetid"
+    message = ""
+    color = "#BD5FFF"
+    position = "Right"
+    x_margin = "18"
+    y_margin = "18"
+  # Note: Buy Me a Coffee description is in i18n (buyMeACoffeeDescription in en.toml, es.toml, etc.)
+
+  # Favicon configuration (optional)
+  # Keep `params.favicon` above for simple setups; use this block if you want full control.
+  [params.favicons]
+     ico        = "/favicon/favicon.ico"
+    png        = "/favicon/favicon-96x96.png" # Usamos este como el principal
+    png16      = "/favicon/favicon-96x96.png" # Hugo lo escalará o usará el más cercano
+    png32      = "/favicon/favicon-96x96.png"
+    apple180   = "/favicon/apple-touch-icon.png"
+    android192 = "/favicon/web-app-manifest-192x192.png"
+    android512 = "/favicon/web-app-manifest-512x512.png"
+    manifest   = "/favicon/site.webmanifest"
+    svg        = "/favicon/favicon.svg"
+
+  # Code syntax highlighting themes
+  # Options: Any valid Chroma style name (e.g., "catppuccin-macchiato", "catppuccin-frappe", "github", "monokai", etc.)
+  [params.codeHighlight]
+    darkTheme = "catppuccin-macchiato"
+    lightTheme = "catppuccin-frappe"
+
+  # Umami Analytics (optional)
+  # Set your Umami website ID for page tracking
+  # [params.umami]
+  #   websiteId = "your-umami-website-id"
+
+  [params.copyright]
+    startYear = 2025
+    owner = "Pablo Paucar"
+
   [params.admonitions]
     alertStyle = "favicon"
 
-[params.social]
-  github = "https://github.com/tu-usuario"
-  # Agrega los que quieras según la doc que pasaste
+# =============================================================================
+# Languages - Configuration for multiple languages, for personalized text per language.
+# 404: Set custom404Message per language in [languages.<lang>.params]
+# Add/remove languages by adding/removing [languages.<lang>] blocks.
+# Create themes/mana/i18n/<lang>.toml for each language (copy from en.toml, if not already exists).
+#
+# Content layout (choose one):
+# - Translation by filename: Omit contentDir. Use content/posts/post.md + content/posts/post.es.md
+# - Translation by directory: Set contentDir per language (e.g. content/en/, content/he/)
+# See: https://gohugo.io/content-management/multilingual/
+#
+# For RTL languages (Hebrew, Arabic): set languageDirection = "rtl" in the language block.
+# =============================================================================
 
-[[menus.main]]
-  name = 'Inicio'
-  pageRef = '/'
-  weight = 10
+# English (default)
+[languages.en]
+  languageCode = "en-US"
+  languageName = "English"
+  languageDirection = "ltr"
+  contentDir = "content/en"
+  weight = 1
+  title = "Mechatronics & Cybersecurity"
 
-[[menus.main]]
-  name = 'Posts'
-  pageRef = '/posts'
-  weight = 20
+  # Override root params when needed. Omit keys to use root defaults.
+  [languages.en.params]
+    description = "A technical blog documenting my journey in Mechatronics and Cybersecurity. Focused on Hardware Hacking, Industrial Protocols (OT), and IT security research."
+    author = "Pablo Paucar"
+    heroTitleLine1 = "Mechatronics &"
+    heroTitleLine2 = "Cybersecurity"
+    notFoundImage = "/images/avatar.png"
+    custom404Message = "Sorry, the page you are looking for could not be found."
+    # Footer text (optional)
+    footerText = "Built with Hugo and Mana theme"
 
-[[menus.main]]
-  name = 'Sobre mí'
-  url = '/about/'
-  weight = 30
+  
 
-[markup.goldmark.parser.attribute]
-  block = true
-  title = true
+  [[languages.en.menus.main]]
+    name = "HTB"
+    pageRef = "/htb"
+    weight = 10
+
+  [[languages.en.menus.main]]
+    name = "Hardware"
+    pageRef = "/hardware"
+    weight = 20
+
+  [[languages.en.menus.main]]
+    name = "IT/OT"
+    pageRef = "/it-ot"
+    weight = 30
+
+  [[languages.en.menus.main]]
+    name = "Mechatronics"
+    pageRef = "/mechatronics"
+    weight = 40
+
+  [[languages.en.menus.main]]
+    name = "About"
+    pageRef = "/about"
+    weight = 50
+
+# Hebrew (RTL) - Example for Right-to-Left languages (Hebrew, Arabic, etc.)
+# Set languageDirection = "rtl" to enable RTL layout, mirrored navigation, and proper text flow.
+# [languages.he]
+#   languageCode = "he-IL"
+#   languageName = "עברית"
+#   languageDirection = "rtl"
+#   contentDir = "content/he"
+#   weight = 2
+#   title = "Your Site Title"
+
+#   [languages.he.params]
+#     description = "Your site description"
+#     author = "Your Name"
+#     heroTitleLine1 = "YOUR SITE NAME"
+#     heroTitleLine2 = "YOUR TAGLINE"
+#     custom404Message = "Sorry, the page you are looking for could not be found."
+#     footerText = "Built with Hugo and Mana theme"
+
+#   [[languages.he.menus.main]]
+#     name = "בית"
+#     pageRef = "/"
+#     weight = 10
+#   [[languages.he.menus.main]]
+#     name = "Posts"
+#     pageRef = "/posts"
+#     weight = 20
+#   [[languages.he.menus.main]]
+#     name = "Tags"
+#     pageRef = "/tags"
+#     weight = 30
+#   [[languages.he.menus.main]]
+#     name = "About"
+#     url = "/about/"
+#     weight = 40
+
+# Spanish (Use for example reference for your specific language)
+# [languages.es]
+#   languageCode = "es-ES"
+#   languageName = "Español"
+#   languageDirection = "ltr"
+#   contentDir = "content/es"
+#   weight = 2
+#   title = "Tu sitio"
+
+#   [languages.es.params]
+#     description = "La descripción de tu sitio"
+#     author = "Your Name"
+#     heroTitleLine1 = "NOMBRE DE TU SITIO"
+#     heroTitleLine2 = "TU ESLOGAN"
+#     custom404Message = "Lo sentimos, no encontramos la página que buscas."
+#     footerText = "Hecho con Hugo y Mana theme"
+
+#   [[languages.es.menus.main]]
+#     name = "Inicio"
+#     pageRef = "/"
+#     weight = 10
+
+#   [[languages.es.menus.main]]
+#     name = "Posts"
+#     pageRef = "/posts"
+#     weight = 20
+
+#   [[languages.es.menus.main]]
+#     name = "Etiquetas"
+#     pageRef = "/tags"
+#     weight = 30
+
+#   [[languages.es.menus.main]]
+#     name = "Acerca"
+#     url = "/about/"
+#     weight = 40
